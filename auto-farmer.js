@@ -105,7 +105,7 @@
                     console.log('First game found. Cycling through queue...');
                     remaining = parseInt($J(data).find(".queue_sub_text").html().match(new RegExp('\\((.*) r'))[1]);
                     updateCountdown();
-                    console.log(remaining + ' remaining in the queue.');
+                    console.log('Remaining: ' + remaining);
                     nextInQueue(data);
                 },
                 error:function(){
@@ -138,9 +138,10 @@
                 nextInQueue(data);
             }
             else{
-                console.log('Done with queue. Going back to the start or doing the next queue.');
+                console.log('Done with queue. ' + queuesRemaining + ' queues remaining.');
                 updateCountdown();
                 if (queuesRemaining == 0){
+                    console.log('All queues completed. Refreshing the page...');
                     location.href = 'https://store.steampowered.com/explore/';
                 }
                 else{

@@ -11,7 +11,7 @@
 
 (function() {
     'use strict';
-    var remaining;
+    var remaining = 11;
     var queuesRemaining = 3;
 
     function setQueuesRemaining(){
@@ -22,17 +22,18 @@
     function placeUI(){
         $J('.discovery_queue_apps').css('padding-bottom', '40px');
 
-        var loadingSpinner = '<div class="farmLoadingSpinner" style="display: none;">';
-        loadingSpinner += ' <svg class="lds-blocks" style="margin-top: 13px; margin-left: 6px;" width="26px" height="26px" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 100 100" preserveAspectRatio="xMidYMid" style="background: rgba(0, 0, 0, 0) none repeat scroll 0% 0%;"><rect x="19" y="19" width="20" height="20" fill="#17212F"> <animate attributeName="fill" values="#5699d2;#17212F;#17212F" keyTimes="0;0.125;1" dur="1s" repeatCount="indefinite" begin="0s" calcMode="discrete"></animate> </rect><rect x="40" y="19" width="20" height="20" fill="#17212F"> <animate attributeName="fill" values="#5699d2;#17212F;#17212F" keyTimes="0;0.125;1" dur="1s" repeatCount="indefinite" begin="0.125s" calcMode="discrete"></animate> </rect><rect x="61" y="19" width="20" height="20" fill="#17212F"> <animate attributeName="fill" values="#5699d2;#17212F;#17212F" keyTimes="0;0.125;1" dur="1s" repeatCount="indefinite" begin="0.25s" calcMode="discrete"></animate> </rect><rect x="19" y="40" width="20" height="20" fill="#17212F"> <animate attributeName="fill" values="#5699d2;#17212F;#17212F" keyTimes="0;0.125;1" dur="1s" repeatCount="indefinite" begin="0.875s" calcMode="discrete"></animate> </rect><rect x="61" y="40" width="20" height="20" fill="#17212F"> <animate attributeName="fill" values="#5699d2;#17212F;#17212F" keyTimes="0;0.125;1" dur="1s" repeatCount="indefinite" begin="0.375s" calcMode="discrete"></animate> </rect><rect x="19" y="61" width="20" height="20" fill="#17212F"> <animate attributeName="fill" values="#5699d2;#17212F;#17212F" keyTimes="0;0.125;1" dur="1s" repeatCount="indefinite" begin="0.75s" calcMode="discrete"></animate> </rect><rect x="40" y="61" width="20" height="20" fill="#17212F"> <animate attributeName="fill" values="#5699d2;#17212F;#17212F" keyTimes="0;0.125;1" dur="1s" repeatCount="indefinite" begin="0.625s" calcMode="discrete"></animate> </rect><rect x="61" y="61" width="20" height="20" fill="#17212F"> <animate attributeName="fill" values="#5699d2;#17212F;#17212F" keyTimes="0;0.125;1" dur="1s" repeatCount="indefinite" begin="0.5s" calcMode="discrete"></animate> </rect></svg>';
+        var farmButton = '<div class="btnv6_blue_hoverfade btn_medium btn_farm_cards" style="margin-top: 10px;">';
+        farmButton += '<span>Automate your queue</span>';
+        farmButton += '</div>';
+
+        var loadingSpinner = '<div class="farmLoadingSpinner">';
+        loadingSpinner += ' <svg class="lds-blocks" style="margin-top: 13px;" width="38px" height="38px" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 100 100" preserveAspectRatio="xMidYMid" style="background: rgba(0, 0, 0, 0) none repeat scroll 0% 0%;"><rect x="19" y="19" width="20" height="20" fill="#17212F"> <animate attributeName="fill" values="#5699d2;#17212F;#17212F" keyTimes="0;0.125;1" dur="1s" repeatCount="indefinite" begin="0s" calcMode="discrete"></animate> </rect><rect x="40" y="19" width="20" height="20" fill="#17212F"> <animate attributeName="fill" values="#5699d2;#17212F;#17212F" keyTimes="0;0.125;1" dur="1s" repeatCount="indefinite" begin="0.125s" calcMode="discrete"></animate> </rect><rect x="61" y="19" width="20" height="20" fill="#17212F"> <animate attributeName="fill" values="#5699d2;#17212F;#17212F" keyTimes="0;0.125;1" dur="1s" repeatCount="indefinite" begin="0.25s" calcMode="discrete"></animate> </rect><rect x="19" y="40" width="20" height="20" fill="#17212F"> <animate attributeName="fill" values="#5699d2;#17212F;#17212F" keyTimes="0;0.125;1" dur="1s" repeatCount="indefinite" begin="0.875s" calcMode="discrete"></animate> </rect><rect x="61" y="40" width="20" height="20" fill="#17212F"> <animate attributeName="fill" values="#5699d2;#17212F;#17212F" keyTimes="0;0.125;1" dur="1s" repeatCount="indefinite" begin="0.375s" calcMode="discrete"></animate> </rect><rect x="19" y="61" width="20" height="20" fill="#17212F"> <animate attributeName="fill" values="#5699d2;#17212F;#17212F" keyTimes="0;0.125;1" dur="1s" repeatCount="indefinite" begin="0.75s" calcMode="discrete"></animate> </rect><rect x="40" y="61" width="20" height="20" fill="#17212F"> <animate attributeName="fill" values="#5699d2;#17212F;#17212F" keyTimes="0;0.125;1" dur="1s" repeatCount="indefinite" begin="0.625s" calcMode="discrete"></animate> </rect><rect x="61" y="61" width="20" height="20" fill="#17212F"> <animate attributeName="fill" values="#5699d2;#17212F;#17212F" keyTimes="0;0.125;1" dur="1s" repeatCount="indefinite" begin="0.5s" calcMode="discrete"></animate> </rect></svg>';
         loadingSpinner += '</div>';
 
-        var farmCountdown = '<div style="margin-left: 2px;margin-top: 18px;font-family: "Motiva Sans", Sans-serif; font-weight: 300;">';
-        farmCountdown += '<span class="farmCountdownText" style="display: none;">Games remaining: </span><span class="farmCountdown" style="display: none;"></span>';
-        farmCountdown += '</div>';
-
-        var farmQueueCountdown = '<div style="margin-left: 2px;margin-top: 18px;font-family: "Motiva Sans", Sans-serif; font-weight: 300;">';
-        farmQueueCountdown += '<span class="farmCountdownText" style="display: none;">Queues remaining: </span><span class="farmQueueCountdown" style="display: none;"></span>';
-        farmQueueCountdown += '</div>';
+        var farmCountdowns = '<div style="margin-left: 2px;margin-top: 4px;font-family: \'Motiva Sans\', Sans-serif; font-weight: 300;">';
+        farmCountdowns += '<div><span class="farmCountdownText">Games: </span><span class="farmCountdown"></span></div>';
+        farmCountdowns += '<div><span class="farmCountdownText">Queues: </span><span class="farmQueueCountdown"></span></div>';
+        farmCountdowns += '</div>';
 
         var numQueuesSelector = '<select class="farmNumSelector" style="margin-top: 10px;margin-right: 10px; color: #67c1f5 !important;background: rgba( 103, 193, 245, 0.2 ); border: none;">';
         numQueuesSelector += '<option value="1" style="color: #67c1f5 !important;background: #305F82 !important;">1 time</option>';
@@ -40,19 +41,26 @@
         numQueuesSelector += '<option value="3" selected="selected" style="color: #67c1f5 !important;background: #305F82 !important;;">3 times</option>';
         numQueuesSelector += '</select> ';
 
-        var farmButton = '<div style="display: flex; justify-content: center;">';
-        farmButton += numQueuesSelector;
-        farmButton += '<div class="btnv6_blue_hoverfade btn_medium btn_farm_cards" style="margin-top: 10px;"><span>Automate your queue</span></div>';
-        farmButton += loadingSpinner;
-        farmButton += farmCountdown;
-        farmButton += farmQueueCountdown;
-        farmButton += '</div>';
+        var farmInputsSection = '<div class="farmUIInputs" style="display: flex; justify-content: center;">';
+        farmInputsSection += numQueuesSelector;
+        farmInputsSection += farmButton;
+        farmInputsSection += '</div>';
+
+        var farmLoadingSection = '<div class="farmUILoading" style="display: none; text-align: center; font-size: 16px;">';
+        farmLoadingSection += loadingSpinner;
+        farmLoadingSection += farmCountdowns;
+        farmLoadingSection += '</div>';
+
+        
+        var farmUI = farmInputsSection;
+        farmUI += farmLoadingSection;
 
         $J('select.inpSelect').css('-webkit-appearance', 'none');
 
-        $J('.discovery_queue_apps').append(farmButton);
+        $J('.discovery_queue_apps').append(farmUI);
 
         $J('.btn_farm_cards').on('click', function(){
+            updateCountdown();
             generateFarmQueue();
         });
 
@@ -62,21 +70,20 @@
     }
 
     //Show the number of games left in the queue on the UI
-    function displayCountdown(){
-        $J('.farmNumSelector').hide();
-        $J('.farmLoadingSpinner').show();
-        $J('.farmCountdownText').show();
-        $J('.farmCountdown').show();
+    function updateCountdown(){
         $J('.farmCountdown').html(remaining);
-        $J('.farmQueueCountdown').show();
         $J('.farmQueueCountdown').html(queuesRemaining);
+        $J('.farmUIInputs').slideUp(function(){
+            $J('.farmUILoading').slideDown();
+        });
     }
+
 
     //If we're already on a game page, get the remaining number in the queue
     function findRemainingCount(){
         if ($J(".queue_sub_text").length){
             remaining = parseInt($J(".queue_sub_text").html().match(new RegExp('\\((.*) r'))[1]);
-            displayCountdown();
+            updateCountdown();
             console.log(remaining + ' remaining in the queue.');
         }
     }
@@ -97,7 +104,7 @@
                 success:function(data) {
                     console.log('First game found. Cycling through queue...');
                     remaining = parseInt($J(data).find(".queue_sub_text").html().match(new RegExp('\\((.*) r'))[1]);
-                    displayCountdown();
+                    updateCountdown();
                     console.log(remaining + ' remaining in the queue.');
                     nextInQueue(data);
                 },
@@ -121,7 +128,10 @@
             var nextPageForm = $J(data).find("#next_in_queue_form")[0];
             if (nextPageForm && nextPageForm.length && remaining > 0){
                 remaining--;
-                displayCountdown();
+                if (remaining <= 0){
+                    queuesRemaining--;
+                }
+                updateCountdown();
                 console.log('Remaining: ' + remaining);
 
                 originalForm.parent().html(nextPageForm);
@@ -129,8 +139,7 @@
             }
             else{
                 console.log('Done with queue. Going back to the start or doing the next queue.');
-                queuesRemaining--;
-                displayCountdown();
+                updateCountdown();
                 if (queuesRemaining == 0){
                     location.href = 'https://store.steampowered.com/explore/';
                 }
@@ -147,5 +156,5 @@
     findRemainingCount();
     placeUI();
 
-    console.log('Auto farmer initiated.');
+    console.log('Steam Queue Farmer initiated.');
 })();
